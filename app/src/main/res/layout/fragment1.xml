@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"></View>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:background="#F50057"></LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#FF4081">
+
+        <Button
+            android:layout_width="@dimen/menu_button"
+            android:layout_height="match_parent"
+            android:id="@+id/back"
+            android:background="@mipmap/ic_arrow_back_white_48dp"
+            android:nestedScrollingEnabled="false"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:elevation="@dimen/menu_margin"/>
+
+        <Button
+            android:layout_width="@dimen/menu_button"
+            android:layout_height="match_parent"
+            android:id="@+id/next"
+            android:background="@mipmap/ic_arrow_forward_white_48dp"
+            android:onClick="next"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#F48FB1"
+            android:layout_margin="4dp">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/editText1"
+                android:layout_weight="1"
+                android:hint="Search or enter URL"
+                android:inputType="textUri" />
+
+            <Button
+                android:layout_width="36dp"
+                android:layout_height="match_parent"
+                android:id="@+id/go"
+                android:layout_marginRight="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:background="@mipmap/ic_send_white_48dp"
+                android:elevation="@dimen/menu_margin"/>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="@dimen/menu_button"
+            android:layout_height="match_parent"
+            android:id="@+id/home"
+            android:background="@mipmap/ic_home_white_48dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginRight="2dp"
+            android:elevation="@dimen/menu_margin"/>
+
+    </LinearLayout>
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/webView"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1" />
+
+</LinearLayout>
