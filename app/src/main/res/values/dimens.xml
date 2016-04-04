@@ -9,4 +9,5 @@
 
     <dimen name="menu_button">40dp</dimen>
     <dimen name="menu_margin">4dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
