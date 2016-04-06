@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/bookmark_list_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textSize="@dimen/item_title_text_size"
+        android:layout_margin="@dimen/menu_margin"
+        android:text="Title" />
+
+    <TextView
+        android:id="@+id/bookmark_list_url"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/name"
+        android:layout_margin="@dimen/menu_margin"
+        android:text="URL" />
+
+</LinearLayout>
