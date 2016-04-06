@@ -22,6 +22,7 @@ import java.util.List;
 
 public class BookmarkActivity extends AppCompatActivity {
     List<Bookmark> bookmarks;
+    ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class BookmarkActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        ListView listView = (ListView)findViewById(R.id.listView);
+        listView = (ListView)findViewById(R.id.listView);
 
         //prepare data
         bookmarks = loadData();
@@ -65,7 +66,4 @@ public class BookmarkActivity extends AppCompatActivity {
         ArrayList<Bookmark> loadDataList = gson.fromJson(preferences.getString("topic",""), new TypeToken<List<Bookmark>>(){}.getType());
         return loadDataList;
     }
-
-
-
 }

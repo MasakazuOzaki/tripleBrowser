@@ -6,9 +6,10 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="?attr/actionBarSize"
         android:background="#FF4081"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:elevation="@dimen/menu_margin">
 
         <Button
             android:layout_width="@dimen/menu_button"
@@ -33,7 +34,8 @@
             android:layout_height="@dimen/menu_button"
             android:layout_weight="1"
             android:background="#F48FB1"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:elevation="2dp">
 
             <EditText
                 android:layout_width="0dp"
