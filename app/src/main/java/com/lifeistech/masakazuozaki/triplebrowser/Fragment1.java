@@ -1,9 +1,12 @@
 package com.lifeistech.masakazuozaki.triplebrowser;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.lifeistech.masakazuozaki.triplebrowser.entity.Bookmark;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by MasakazuOzaki on 2016/01/31.
  */
@@ -27,6 +37,7 @@ public class Fragment1 extends Fragment {
     int count;
     String http;
     String www;
+    List<Bookmark> bookmarks;
 
     public static Fragment1 newInstance(int position) {
         Fragment1 f = new Fragment1();
@@ -43,6 +54,11 @@ public class Fragment1 extends Fragment {
         super.onCreate(savedInstanceState);
         position = getArguments().getInt("position");
 
+        bookmarks = loadData();
+        if(bookmarks == null){
+            bookmarks = new ArrayList<>();
+        }
+
         http ="https://";
         www = "www.";
     }
@@ -58,6 +74,13 @@ public class Fragment1 extends Fragment {
         setRetainInstance(true);
         createButtons(view);
         return view;
+    }
+
+    private void saveList(List<Bookmark> list) {
+        SharedPreferences preferences = getActivity().getSharedPreferences("key", Activity.MODE_PRIVATE);
+        Gson gson = new Gson();
+        preferences.edit().putString("topic", gson.toJson(list)).commit();
+        Log.d("save", "saved");
     }
 
 
@@ -110,21 +133,19 @@ public class Fragment1 extends Fragment {
                 editText1.selectAll();
                 text1 = editText1.getText().toString();
 
-                if(text1.startsWith(http)){
+                if (text1.startsWith(http)) {
                     myWebView.loadUrl(text1);
-                    Toast.makeText(context, "Loading..."+text1, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Loading..." + text1, Toast.LENGTH_SHORT).show();
                     editText1.setText("");
-                }
-                else if(text1.startsWith(www)){
-                   String url ="https://"+text1;
-                   myWebView.loadUrl(url);
-                    Toast.makeText(context, "Loading..."+text1, Toast.LENGTH_SHORT).show();
+                } else if (text1.startsWith(www)) {
+                    String url = "https://" + text1;
+                    myWebView.loadUrl(url);
+                    Toast.makeText(context, "Loading..." + text1, Toast.LENGTH_SHORT).show();
                     editText1.setText("");
-                }
-                else {
-                    String search = "https://www.google.com/search?q="+text1;
+                } else {
+                    String search = "https://www.google.com/search?q=" + text1;
                     myWebView.loadUrl(search);
-                    Toast.makeText(context, "Loading... Searched: "+text1, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Loading... Searched: " + text1, Toast.LENGTH_SHORT).show();
                     editText1.setText("");
                 }
                 v.setFocusable(true);
@@ -135,10 +156,33 @@ public class Fragment1 extends Fragment {
             }
         });
 
+        Button button5 = (Button)view.findViewById(R.id.star);
+        button5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = myWebView.getUrl();
+                String title = myWebView.getTitle();
 
+                Bookmark bookmark = new Bookmark(title, url);
 
+                bookmarks.add(bookmark);
+
+                saveList(bookmarks);
+
+                Toast.makeText(getActivity(), "Saved Bookmark: " + title, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
+    private ArrayList<Bookmark> loadData() {
+        SharedPreferences preferences = getActivity().getSharedPreferences("key", Activity.MODE_PRIVATE);
+        Gson gson = new Gson();
+        ArrayList<Bookmark> loadDataList = gson.fromJson(preferences.getString("topic",""), new TypeToken<List<Bookmark>>(){}.getType());
+        return loadDataList;
+    }
+
 }
+
 
 
 
