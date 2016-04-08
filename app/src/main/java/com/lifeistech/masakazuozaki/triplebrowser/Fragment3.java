@@ -55,10 +55,7 @@ public class Fragment3 extends Fragment {
         myWebView.loadUrl("https://www.google.co.jp/");
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.getSettings().setDomStorageEnabled(true);
-
-
-
-
+        setRetainInstance(true);
         createButtons(view);
         return view;
     }
