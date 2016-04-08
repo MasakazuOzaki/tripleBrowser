@@ -50,13 +50,14 @@ public class Fragment2 extends Fragment {
         super.onCreate(savedInstanceState);
 
         position = getArguments().getInt("position");
-        http2 ="https://";
         bookmarks = new ArrayList<>();
         //prepare data
         bookmarks = loadData();
         if(bookmarks == null){
             bookmarks = new ArrayList<>();
         }
+        http2 ="https://";
+        www2 = "www.";
     }
 
     @Override
