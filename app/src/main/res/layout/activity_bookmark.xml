@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:background="#e0e0e0"
     tools:context="com.lifeistech.masakazuozaki.triplebrowser.BookmarkActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -24,7 +25,8 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:divider="@null"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

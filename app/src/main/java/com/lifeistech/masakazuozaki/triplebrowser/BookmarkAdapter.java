@@ -58,7 +58,8 @@ public class BookmarkAdapter extends ArrayAdapter<Bookmark> {
         }
         //set tag
         viewHolder.titleTextView.setTag(position);
-
+        Animation anim = AnimationUtils.loadAnimation(getContext(), R.anim.motion);
+        convertView.startAnimation(anim);
         return convertView;
     }
 
